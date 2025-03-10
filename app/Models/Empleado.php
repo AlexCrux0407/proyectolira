@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\RegistraCambios;
 use Illuminate\Database\Eloquent\Model;
 
 class Empleado extends Model
 {
+    use RegistraCambios;
+    
     protected $table = 'empleados';
     protected $fillable = [
         'nombre',

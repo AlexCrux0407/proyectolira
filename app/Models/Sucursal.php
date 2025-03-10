@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\RegistraCambios;
 use Illuminate\Database\Eloquent\Model;
 
 class Sucursal extends Model
 {
+    use RegistraCambios;
+    
     protected $table = 'sucursales';
     protected $fillable = [
         'nombre', 

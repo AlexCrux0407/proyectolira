@@ -5,6 +5,7 @@ use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\ReporteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,7 @@ Route::prefix('web/proveedores')->group(function () {
     Route::put('/{proveedor}', [ProveedorController::class, 'update'])->name('proveedores.update');
     Route::delete('/{proveedor}', [ProveedorController::class, 'destroy'])->name('proveedores.destroy');
 });
+
+// Rutas para reportes
+Route::get('/reportes/sucursal/{sucursal}/historial', [ReporteController::class, 'historialCambiosSucursal'])->name('reportes.historial.sucursal');
+Route::get('/reportes/sucursal/{sucursal}/historial/pdf', [ReporteController::class, 'generarPDFHistorial'])->name('reportes.historial.sucursal.pdf');
