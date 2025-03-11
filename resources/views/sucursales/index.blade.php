@@ -3,9 +3,14 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Sucursales</h2>
-    <a href="{{ route('sucursales.create') }}" class="btn btn-success">
-        <i class="bi bi-plus-circle"></i> Nueva Sucursal
-    </a>
+    <div>
+        <a href="{{ route('exportar.finanzas') }}" class="btn btn-success me-2">
+            <i class="bi bi-file-excel"></i> Exportar Finanzas
+        </a>
+        <a href="{{ route('sucursales.create') }}" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Nueva Sucursal
+        </a>
+    </div>
 </div>
 
 <div class="mb-4">
@@ -18,7 +23,7 @@
     <div class="col-md-3 mb-4">
         <div class="card">
             <div class="card-body text-center">
-                <img src="{{ asset('img/restaurant.png') }}" alt="Sucursal" class="branch-image mb-3">
+                <img src="{{ asset('images/restaurant.png') }}" alt="Sucursal" class="branch-image mb-3">
                 <h5 class="card-title">{{ $sucursal->nombre }}</h5>
                 <p class="card-text">No. De empleados: {{ $sucursal->empleados->count() }}</p>
                 <p class="card-text">ID: {{ $sucursal->id }}</p>
@@ -33,4 +38,32 @@
     <p>No hay sucursales registradas. ¡Crea una nueva sucursal para comenzar!</p>
 </div>
 @endif
+
+<!-- Modal para filtrar exportación -->
+<div class="modal fade" id="exportarFinanzasModal" tabindex="-1" aria-labelledby="exportarFinanzasModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exportarFinanzasModalLabel">Exportar Reporte Financiero</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{{ route('exportar.finanzas') }}" method="GET">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="fecha_inicio" class="form-label">Fecha Inicio</label>
+            <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{ now()->subMonths(3)->format('Y-m-d') }}">
+          </div>
+          <div class="mb-3">
+            <label for="fecha_fin" class="form-label">Fecha Fin</label>
+            <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" value="{{ now()->format('Y-m-d') }}">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Exportar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 @endsection

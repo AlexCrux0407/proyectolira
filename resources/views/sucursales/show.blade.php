@@ -5,7 +5,7 @@
     <div class="card-body">
     <div class="row">
       <div class="col-md-4">
-      <img src="{{ asset('img/restaurant.png') }}" alt="Sucursal" class="img-fluid">
+      <img src="{{ asset('images/restaurant.png') }}" alt="Sucursal" class="img-fluid">
       </div>
       <div class="col-md-8">
       <h3>Sucursal: {{ $sucursal->nombre }}</h3>

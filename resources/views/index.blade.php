@@ -29,6 +29,19 @@
                         </div>
                     </div>
                 </div>
+
+
+         <!-- En la sección donde tienes las tarjetas de opciones, agrega otra para el calendario -->
+<div class="col-md-4">
+    <div class="card mb-4">
+        <div class="card-body text-center">
+            <i class="bi bi-calendar3 fs-1 mb-3"></i>
+            <h5 class="card-title">Calendario</h5>
+            <p class="card-text">Agenda visitas de proveedores</p>
+            <a href="{{ route('calendario.index') }}" class="btn btn-primary">Gestionar</a>
+        </div>
+    </div>
+</div>
                 
                 <div class="col-md-4">
                     <div class="card mb-4">

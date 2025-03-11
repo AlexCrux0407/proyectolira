@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Sucursal extends Model
 {
     use RegistraCambios;
-    
+
     protected $table = 'sucursales';
     protected $fillable = [
-        'nombre', 
-        'direccion', 
-        'telefono', 
-        'encargado', 
-        'horario_apertura', 
+        'nombre',
+        'direccion',
+        'telefono',
+        'encargado',
+        'horario_apertura',
         'horario_cierre'
     ];
 
@@ -28,4 +28,25 @@ class Sucursal extends Model
     {
         return $this->hasMany(Pedido::class, 'sucursal_id');
     }
+
+    // En app/Models/Sucursal.php
+    public function finanzas()
+    {
+        return $this->hasMany(FinanzaSucursal::class, 'sucursal_id');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

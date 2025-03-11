@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\ExportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\CalendarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +55,13 @@ Route::prefix('web/proveedores')->group(function () {
 // Rutas para reportes
 Route::get('/reportes/sucursal/{sucursal}/historial', [ReporteController::class, 'historialCambiosSucursal'])->name('reportes.historial.sucursal');
 Route::get('/reportes/sucursal/{sucursal}/historial/pdf', [ReporteController::class, 'generarPDFHistorial'])->name('reportes.historial.sucursal.pdf');
+// Ruta para exportar finanzas
+Route::get('/exportar/finanzas', [ExportController::class, 'exportFinanzas'])->name('exportar.finanzas');
+
+
+
+// Rutas para el calendario
+Route::get('/calendario', [CalendarioController::class, 'index'])->name('calendario.index');
+Route::post('/calendario', [CalendarioController::class, 'store'])->name('calendario.store');
+Route::put('/calendario/{id}', [CalendarioController::class, 'update'])->name('calendario.update');
+Route::delete('/calendario/{id}', [CalendarioController::class, 'destroy'])->name('calendario.destroy');
