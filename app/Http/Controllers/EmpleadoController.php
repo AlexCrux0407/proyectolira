@@ -42,8 +42,16 @@ class EmpleadoController extends Controller
             'telefono' => 'nullable|string|max:20',
             'email' => 'nullable|email|max:100',
         ]);
-
-        Empleado::create($request->all());
+    
+        // Crear el empleado
+        $empleado = Empleado::create($request->all());
+        
+        // Registrar para depuración
+        \Log::info('Empleado creado', [
+            'id' => $empleado->id,
+            'nombre' => $empleado->nombre,
+            'sucursal_id' => $empleado->sucursal_id
+        ]);
         
         // Redireccionar a la sucursal si viene de allí
         if ($request->has('from_sucursal') && $request->from_sucursal) {

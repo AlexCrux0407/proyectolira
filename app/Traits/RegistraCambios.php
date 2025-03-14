@@ -6,11 +6,9 @@ use App\Models\HistorialCambio;
 
 trait RegistraCambios
 {
-    // Hook para cuando el modelo es creado
-    protected static function booted()
+    // Hook para cuando se inicializa el modelo
+    public static function bootRegistraCambios()
     {
-        parent::booted();
-
         // Cuando se crea un modelo
         static::created(function ($modelo) {
             HistorialCambio::create([
