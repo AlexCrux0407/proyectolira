@@ -9,6 +9,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ReporteVentasController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\CalendarioController;
+use App\Http\Controllers\PrediccionDemandaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +70,7 @@ Route::delete('/calendario/{id}', [CalendarioController::class, 'destroy'])->nam
 
 // Rutas para reportes de ventas
 Route::get('/reportes/productos-top', [ReporteVentasController::class, 'productosTopPorSucursal'])->name('reportes.productos-top');
+
+
+// Rutas para predicción de demanda
+Route::get('/predicciones', [PrediccionDemandaController::class, 'index'])->name('predicciones.index');

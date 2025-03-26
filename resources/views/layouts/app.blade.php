@@ -119,6 +119,12 @@
                             <i class="bi bi-graph-up-arrow me-1"></i>Productos Top
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('predicciones*') ? 'active' : '' }}"
+                            href="{{ route('predicciones.index') }}">
+                            <i class="bi bi-graph-up-arrow me-1"></i>Predicciones
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
