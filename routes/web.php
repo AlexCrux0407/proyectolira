@@ -6,6 +6,7 @@ use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\ReporteVentasController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\CalendarioController;
 
@@ -65,3 +66,6 @@ Route::get('/calendario', [CalendarioController::class, 'index'])->name('calenda
 Route::post('/calendario', [CalendarioController::class, 'store'])->name('calendario.store');
 Route::put('/calendario/{id}', [CalendarioController::class, 'update'])->name('calendario.update');
 Route::delete('/calendario/{id}', [CalendarioController::class, 'destroy'])->name('calendario.destroy');
+
+// Rutas para reportes de ventas
+Route::get('/reportes/productos-top', [ReporteVentasController::class, 'productosTopPorSucursal'])->name('reportes.productos-top');
