@@ -117,7 +117,6 @@ class PrediccionDemandaController extends Controller
                 continue;
             }
 
-            // Implementación alternativa sin normalizer
             try {
                 // Entrenar modelo directamente con los datos
                 $regression = new LeastSquares();

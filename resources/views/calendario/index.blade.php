@@ -46,69 +46,36 @@
     <div class="col-md-6">
       <div class="card border-0 shadow-sm h-100">
       <div class="card-header bg-light py-3">
-        <h5 class="mb-0"><i class="bi bi-info-circle me-2"></i>Próximas Visitas</h5>
+        <h5 class="mb-0"><i class="bi bi-info-circle me-2"></i>Proximas Visitas</h5>
       </div>
       <div class="card-body">
-        <div class="list-group list-group-flush">
-        @if(isset($proximasVisitas) && count($proximasVisitas) > 0)
-      @foreach($proximasVisitas as $visita)
-      <div class="list-group-item border-0 border-bottom py-3 px-0">
-      <div class="d-flex justify-content-between align-items-center">
-      <div>
-      <h6 class="mb-1">
-      @if(isset($visita) && isset($visita->proveedor) && isset($visita->proveedor->nombre_empresa))
-      {{ $visita->proveedor->nombre_empresa }}
-    @else
-      Proveedor no especificado
-    @endif
-      </h6>
-      <p class="mb-0 small text-muted">
-      @if(isset($visita) && isset($visita->sucursal) && isset($visita->sucursal->nombre))
-      <i class="bi bi-building me-1"></i> {{ $visita->sucursal->nombre }}
-    @else
-      <i class="bi bi-building me-1"></i> Sucursal no especificada
-    @endif
-
-      <span class="mx-2">|</span>
-
-      <i class="bi bi-clock me-1"></i>
-      @if(isset($visita) && isset($visita->hora_inicio))
-      {{ $visita->hora_inicio }}
-    @else
-      N/A
-    @endif
-      -
-      @if(isset($visita) && isset($visita->hora_fin))
-      {{ $visita->hora_fin }}
-    @else
-      N/A
-    @endif
-      </p>
-      </div>
-      <div>
-      @if(isset($visita) && isset($visita->estado))
-      @if($visita->estado == 'programada')
-      <span class="badge bg-primary rounded-pill">Programada</span>
-    @elseif($visita->estado == 'completada')
-      <span class="badge bg-success rounded-pill">Completada</span>
-    @elseif($visita->estado == 'cancelada')
-      <span class="badge bg-danger rounded-pill">Cancelada</span>
-    @else
-      <span class="badge bg-secondary rounded-pill">{{ $visita->estado }}</span>
-    @endif
-    @else
-      <span class="badge bg-secondary rounded-pill">Estado no definido</span>
-    @endif
-      </div>
-      </div>
-      </div>
-    @endforeach
-    @else
-    <p class="text-center text-muted py-3">
-      <i class="bi bi-calendar-x fs-4 d-block mb-2"></i>
-      No hay visitas programadas próximamente
-    </p>
-  @endif
+      <di class="card-body">
+    <div class="list-group list-group-flush">
+        @forelse($proximasVisitas as $visita)
+        <div class="list-group-item border-0 border-bottom py-3 px-0">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1">
+                        {{ $visita->proveedor->nombre_empresa ?? 'Proveedor no especificado' }}
+                    </h6>
+                    <p class="mb-0 small text-muted">
+                        <i class="bi bi-building me-1"></i> {{ $visita->sucursal->nombre ?? 'Sucursal no especificada' }}
+                        <span class="mx-2">|</span>
+                        <i class="bi bi-clock me-1"></i>
+                        {{ $visita->hora_inicio ?? 'N/A' }} - {{ $visita->hora_fin ?? 'N/A' }}
+                    </p>
+                </div>
+                <div>
+                    <span class="badge bg-primary rounded-pill">Programada</span>
+                </div>
+            </div>
+        </div>
+        @empty
+        <div class="list-group-item border-0 py-3 px-0">
+            <p class="text-muted text-center mb-0">No hay visitas programadas</p>
+        </div>
+        @endforelse
+  
         </div>
       </div>
       </div>
@@ -118,52 +85,31 @@
       <div class="card-header bg-light py-3">
         <h5 class="mb-0"><i class="bi bi-graph-up me-2"></i>Resumen de Visitas</h5>
       </div>
+
+
       <div class="card-body">
-        <div class="row text-center">
+    <div class="row text-center">
         <div class="col-md-4 mb-3">
-          <div class="p-3 rounded bg-primary bg-opacity-10">
-          <h3 class="text-primary mb-0">{{ isset($totalProgramadas) ? $totalProgramadas : 0 }}</h3>
-          <p class="small text-muted mb-0">Programadas</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <div class="p-3 rounded bg-success bg-opacity-10">
-          <h3 class="text-success mb-0">{{ isset($totalCompletadas) ? $totalCompletadas : 0 }}</h3>
-          <p class="small text-muted mb-0">Completadas</p>
-          </div>
+            <div class="p-3 rounded bg-primary bg-opacity-10">
+                <h3 class="text-primary mb-0">{{ $totalProgramadas }}</h3>
+                <p class="small text-muted mb-0">Programadas</p>
+            </div>
         </div>
         <div class="col-md-4 mb-3">
-          <div class="p-3 rounded bg-danger bg-opacity-10">
-          <h3 class="text-danger mb-0">{{ isset($totalCanceladas) ? $totalCanceladas : 0 }}</h3>
-          <p class="small text-muted mb-0">Canceladas</p>
-          </div>
+            <div class="p-3 rounded bg-success bg-opacity-10">
+                <h3 class="text-success mb-0">{{ $totalCompletadas }}</h3>
+                <p class="small text-muted mb-0">Completadas</p>
+            </div>
         </div>
+        <div class="col-md-4 mb-3">
+            <div class="p-3 rounded bg-danger bg-opacity-10">
+                <h3 class="text-danger mb-0">{{ $totalCanceladas }}</h3>
+                <p class="small text-muted mb-0">Canceladas</p>
+            </div>
         </div>
-        <div class="mt-4">
-        <h6 class="mb-3">Proveedores más frecuentes</h6>
-        <div class="table-responsive">
-          <table class="table table-sm">
-          <thead class="table-light">
-            <tr>
-            <th>Proveedor</th>
-            <th>Visitas</th>
-            <th>Última Visita</th>
-            </tr>
-          </thead>
-          <tbody>
-            @if(isset($proveedoresFrecuentes) && count($proveedoresFrecuentes) > 0)
-        @foreach($proveedoresFrecuentes as $proveedor)
-      <tr>
-      <td>{{ isset($proveedor->nombre_empresa) ? $proveedor->nombre_empresa : 'N/A' }}</td>
-      <td>{{ isset($proveedor->total_visitas) ? $proveedor->total_visitas : 0 }}</td>
-      <td>{{ isset($proveedor->ultima_visita) ? $proveedor->ultima_visita : 'N/A' }}</td>
-      </tr>
-    @endforeach
-      @else
-    <tr>
-    <td colspan="3" class="text-center py-3">No hay datos disponibles</td>
-    </tr>
-  @endif
+    </div>
+</div>
+
           </tbody>
           </table>
         </div>
@@ -640,7 +586,6 @@
       }
     });
 
-    // Intentar renderizar el calendario dentro de un bloque try-catch
     try {
       calendar.render();
     } catch (e) {

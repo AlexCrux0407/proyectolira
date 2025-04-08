@@ -15,6 +15,18 @@ class CalendarioController extends Controller
         $proveedores = Proveedor::all();
         $sucursales = Sucursal::all();
         
+        // Obtener estadísticas de visitas
+        $totalProgramadas = VisitaProveedor::where('estado', 'programada')->count();
+        $totalCompletadas = VisitaProveedor::where('estado', 'completada')->count();
+        $totalCanceladas = VisitaProveedor::where('estado', 'cancelada')->count();
+        
+        // Obtener visitas programadas (pendientes) ordenadas por fecha más próxima
+        $proximasVisitas = VisitaProveedor::with(['proveedor', 'sucursal'])
+            ->where('estado', 'programada')
+            ->orderBy('fecha_visita', 'asc')
+            ->orderBy('hora_inicio', 'asc')
+            ->get();
+        
         // Preparar los eventos para el calendario
         $eventos = [];
         
@@ -32,7 +44,15 @@ class CalendarioController extends Controller
             ];
         }
         
-        return view('calendario.index', compact('eventos', 'proveedores', 'sucursales'));
+        return view('calendario.index', compact(
+            'eventos', 
+            'proveedores', 
+            'sucursales',
+            'totalProgramadas',
+            'totalCompletadas',
+            'totalCanceladas',
+            'proximasVisitas'
+        ));
     }
     
     public function store(Request $request)
