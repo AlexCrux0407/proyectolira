@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Administración de Restaurantes</title>
+    <title>Sistema de Administración de Áreas</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -15,14 +15,12 @@
         }
 
         .navbar-custom {
-            background-color: #2C3E50;
-            /* Deep blue-gray that complements the page design */
+            background-color:rgb(103, 200, 174);
             box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
         }
 
         .header-logo {
             background-color: #E74C3C;
-            /* Vibrant red that stands out */
             width: 36px;
             height: 36px;
             border-radius: 50%;
@@ -36,11 +34,11 @@
         .logo-text {
             font-size: 1.2rem;
             font-weight: bold;
-            color: white;
+            color: rgba(16, 38, 34, 0.8);
         }
 
         .nav-link {
-            color: rgba(255, 255, 255, .8) !important;
+            color: rgba(16, 38, 34, 0.8) !important;
             font-weight: 500;
             padding: 0.5rem 1rem;
             border-radius: 4px;
@@ -71,8 +69,8 @@
         footer {
             margin-top: auto;
             padding: 1rem 0;
-            background-color: #343a40;
-            color: rgba(255, 255, 255, .6);
+            background-color:rgb(103, 200, 174);
+            color: rgba(0, 0, 0, 0.6);
         }
     </style>
     @yield('head')
@@ -83,9 +81,8 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="/">
                 <div class="header-logo">
-                    <i class="bi bi-cup-hot-fill text-white"></i>
                 </div>
-                <span class="logo-text">Sistema de Restaurantes</span>
+                <span class="logo-text">Admin de Áreas</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,6 +121,10 @@
                             href="{{ route('predicciones.index') }}">
                             <i class="bi bi-graph-up-arrow me-1"></i>Predicciones
                         </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('human_resources.index') }}"><i class="bi bi-people me-1"></i>Derechos Humanos</a>
                     </li>
                 </ul>
             </div>

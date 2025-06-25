@@ -6,13 +6,12 @@
     <div>
       <h2 class="mb-0">
       <i class="bi bi-calendar-check text-primary me-2"></i>
-      Calendario de Visitas de Proveedores
+      Calendario 
       </h2>
-      <p class="text-muted">Gestione las visitas de proveedores a sus sucursales</p>
     </div>
     <div>
       <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#nuevaVisitaModal">
-      <i class="bi bi-plus-circle me-1"></i> Programar Visita
+      <i class="bi bi-plus-circle me-1"></i> Programar evento
       </button>
     </div>
     </div>

@@ -11,6 +11,8 @@ use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\CalendarioController;
 use App\Http\Controllers\PrediccionDemandaController;
 
+require __DIR__.'/human_resources.php';
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +33,19 @@ Route::prefix('web/sucursales')->group(function () {
     Route::get('/edit/{sucursal}', [SucursalController::class, 'edit'])->name('sucursales.edit');
     Route::put('/{sucursal}', [SucursalController::class, 'update'])->name('sucursales.update');
     Route::delete('/{sucursal}', [SucursalController::class, 'destroy'])->name('sucursales.destroy');
+});
+
+// Rutas para empleados
+
+// Rutas para departamentos
+Route::prefix('web/departamentos')->group(function () {
+    Route::get('/', [\App\Http\Controllers\DepartamentoController::class, 'index'])->name('departamentos.index');
+    Route::get('/nuevo', [\App\Http\Controllers\DepartamentoController::class, 'create'])->name('departamentos.create');
+    Route::post('/nuevo', [\App\Http\Controllers\DepartamentoController::class, 'store'])->name('departamentos.store');
+    Route::get('/{departamento}', [\App\Http\Controllers\DepartamentoController::class, 'show'])->name('departamentos.show');
+    Route::get('/edit/{departamento}', [\App\Http\Controllers\DepartamentoController::class, 'edit'])->name('departamentos.edit');
+    Route::put('/{departamento}', [\App\Http\Controllers\DepartamentoController::class, 'update'])->name('departamentos.update');
+    Route::delete('/{departamento}', [\App\Http\Controllers\DepartamentoController::class, 'destroy'])->name('departamentos.destroy');
 });
 
 // Rutas para empleados
